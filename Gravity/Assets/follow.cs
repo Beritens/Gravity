@@ -8,6 +8,11 @@ public class follow : MonoBehaviour {
     public Vector3 offset;
     public float smoothSpeed;
     Camera cam;
+    public SpriteRenderer[] bg;
+    List<Vector2> SpriteStuff = new List<Vector2>();
+    public float[] parralax;
+    public Vector2[] bgOffset;
+    public Color[] tint;
    /* public float minZoom = 60f;
     public float maxZoom = 10f;
     Bounds bounds;
@@ -18,46 +23,29 @@ public class follow : MonoBehaviour {
     private void Start()
     {
         cam = GetComponent<Camera>();
+        for(int i = 0; i < bg.Length; i++)
+        {
+            SpriteStuff.Add(new Vector2(bg[i].sprite.rect.width / bg[i].sprite.pixelsPerUnit, bg[i].sprite.rect.height / bg[i].sprite.pixelsPerUnit));
+            bg[i].material.color = tint[i];
+        }
+        
     }
 
     private void FixedUpdate()
     {
-        //smoothSpeed = target.GetComponent<Rigidbody2D>().velocity.magnitude;
+        
+        
+        
         Vector3 desiredPos = target.position + offset;
         Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
         transform.position = smoothedPos;
+        for (int i = 0; i < bg.Length; i++)
+        {
+            bg[i].material.SetVector("_Offset", new Vector4((transform.position.x+bgOffset[i].x) / SpriteStuff[i].x * parralax[i], (transform.position.y + bgOffset[i].y) / SpriteStuff[i].y * parralax[i], 0, 0));
+        }
+            
+        
     }
 
-    /* void LateUpdate()
-     {
-         MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-         Move();
-         Zoom();
-         Vector3 desirdPos = target.position + offset;
-         Vector3 smoothedPos = Vector3.Lerp(transform.position, desirdPos, smoothSpeed*Time.deltaTime);
-         transform.position = smoothedPos;
-
-
-     }
-     void Move()
-     {
-         Vector3 centerPoint = GetCenterPoint();
-         Vector3 newPosition = centerPoint + offset;
-         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothSpeed);
-
-
-     }
-     void Zoom()
-     {
-         float newZoom = Mathf.Lerp(maxZoom, minZoom, Mathf.Sqrt(Mathf.Pow(boundy.size.x, 2) + Mathf.Pow(boundy.size.y * 2, 2)) / zoomLimiter);
-         print(newZoom);
-         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
-     }
-     Vector3 GetCenterPoint()
-     {
-         boundy = new Bounds(target.position, Vector3.zero);
-         boundy.Encapsulate(MousePos);
-         return boundy.center;
-
-     }*/
+    
 }

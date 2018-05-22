@@ -12,12 +12,17 @@ public class collectable : MonoBehaviour{
         GetComponent<Collider2D>().enabled = false;
         bob = GameObject.Instantiate(particles, transform.position, Quaternion.Euler(0, 0, 0));
         bob.GetComponent< ParticleSystemRenderer>().material.mainTexture = GetComponent<SpriteRenderer>().sprite.texture;
+        StartCoroutine(wait());
     }
     IEnumerator wait()
     {
         yield return new WaitForSeconds(1);
         Destroy(bob);
         Destroy(this.gameObject);
+        if (GetComponent<attracted>())
+        {
+            GameObject.FindObjectOfType<controls>().attractedObj.Remove(GetComponent<attracted>());
+        }
     }
 
 }

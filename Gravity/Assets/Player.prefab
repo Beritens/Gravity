@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1181534043587914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09375, y: 0.1875, z: 0}
+  m_LocalPosition: {x: -0.125, y: 0.1875, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4511848197593552}
@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1592315491092062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -2.7, z: 0}
+  m_LocalPosition: {x: -4.09, y: -1.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4134970264302206}
@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1901092136034110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1875, y: -0.03125, z: 0}
+  m_LocalPosition: {x: 0.21875, y: -0.03125, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4134970264302206}
@@ -148,7 +148,7 @@ Animator:
   m_GameObject: {fileID: 1592315491092062}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 03b009ea2ef18464f85c0b56f3e9d17d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8bfde37f094149641ba2ae29e215994d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   groundCircleRadius: 0.18
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 513
   MaxSpeedGround: 130
   MaxSpeedAir: 50
   speedGround: 120
@@ -185,8 +185,13 @@ MonoBehaviour:
   fall: -11.15
   shortJump: -10
   jumping: 0
+  anim: {fileID: 95281650891829046}
+  MaxHealth: 100
+  health: 100
+  healthBar: {fileID: 0}
   attractedObj: []
-  attractorMass: 8
+  attractorMass: 100
+  MaxAttractorMass: 100
   MinDistance: 0.5
   jumpBreakDistance: 3.5
   arm: {fileID: 4134970264302206}
@@ -197,6 +202,10 @@ MonoBehaviour:
   army: {fileID: 212583044153622230}
   cursorThing: {fileID: 1353647151771254, guid: 569b4791412c2be4eafb5675c61e90cb,
     type: 2}
+  MaxEnergy: 2e+19
+  energy: 2e+19
+  energyBar: {fileID: 0}
+  attractorMassBar: {fileID: 0}
 --- !u!114 &114329762319496164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,7 +214,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1592315491092062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a5bcd82b42b9d44f8bb7fccd6f083c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1614460bb2a4c7348b69aeadb9c79e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}

@@ -27,12 +27,16 @@ public class controls : MonoBehaviour {
     Rigidbody2D rb;
     public bool jumping = false;
     public Animator anim;
+    public float MaxHealth;
+    public float health;
+    public bar healthBar;
     
     [Space(10)]
     [Header("gravity stuff")]
     public List<attracted> attractedObj;
     const float G = 1f;
     public float attractorMass = 10f;
+    public float MaxAttractorMass;
     public float MinDistance;
     public float jumpBreakDistance;
     public Transform arm;
@@ -44,6 +48,9 @@ public class controls : MonoBehaviour {
     public float MaxEnergy;
     public float energy;
     public bar energyBar;
+    
+    public bar attractorMassBar;
+
     Vector2 MousePos;
 
     // Use this for initialization
@@ -51,7 +58,9 @@ public class controls : MonoBehaviour {
         cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         energyBar.changeValue(energy / MaxEnergy);
-	}
+        attractorMassBar.changeValue(attractorMass / MaxAttractorMass);
+        healthBar.changeValue(health / MaxHealth);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -66,6 +75,12 @@ public class controls : MonoBehaviour {
         {
             cursorAnim.transform.position = MousePos;
         }
+        if(Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            attractorMass = Mathf.Clamp(attractorMass + Input.GetAxis("Mouse ScrollWheel")*MaxAttractorMass, 0, MaxAttractorMass);
+            attractorMassBar.changeValue(attractorMass / MaxAttractorMass);
+        }
+        
     }
     void FixedUpdate()
     {
@@ -89,10 +104,10 @@ public class controls : MonoBehaviour {
             mouseDown = false;
         }
     }
-    #region character
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "collectable")
+        if (collision.gameObject.tag == "collectable")
         {
             print("col");
             collectable col = collision.gameObject.GetComponent<collectable>();
@@ -101,19 +116,20 @@ public class controls : MonoBehaviour {
             col.destroy();
 
         }
-        if(collision.gameObject.tag == "death")
+        else if(collision.gameObject.tag == "death")
         {
             Application.LoadLevel(Application.loadedLevel);
         }
         if (checkGrounded())
             jumping = false;
     }
+    #region character
     bool checkGrounded()
     {
         Collider2D ground = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y) + groundCirclePos,groundCircleRadius,groundLayer);
         if (ground != null && ground.tag == "movingPlatform")
             movingPlatform = ground.GetComponent<Rigidbody2D>();
-        else
+        else if(ground != null)
             movingPlatform = null;
         return ground != null;
 
@@ -157,9 +173,19 @@ public class controls : MonoBehaviour {
                     MaxSpeed = MaxSpeedAir;
                     speed = speedAir;
                 }
-                lerp = (input * MaxSpeed - rb.velocity.x) / (input * MaxSpeed);
+                if(movingPlatform == null)
+                {
+                    lerp = (input * MaxSpeed - rb.velocity.x) / (input * MaxSpeed);
+                }
+                else
+                {
+                    lerp = (input * MaxSpeed - (rb.velocity.x - movingPlatform.velocity.x)) / (input * MaxSpeed);
+                }
+                
                 float movement = input * lerp * speed;
-                rb.AddForce(new Vector3(movement, 0f, 0f)/rb.mass, ForceMode2D.Force);
+                print(movement);
+                if((movement>0) == (input > 0))
+                    rb.AddForce(new Vector3(movement, 0f, 0f)/rb.mass, ForceMode2D.Force);
             }
         }
         if (grounded)
