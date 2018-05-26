@@ -17,10 +17,10 @@ TagManager:
   - 
   - 
   - Player
-  - notCollidingWIthEachOther
-  - collectables
-  - 
-  - 
+  - notCollidingWithEachOther
+  - notWallAndGround
+  - notWall
+  - only default
   - 
   - 
   - 
