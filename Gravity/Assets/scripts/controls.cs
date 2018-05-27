@@ -304,17 +304,9 @@ public class controls : MonoBehaviour {
             mouseDown = true;
         }
         float animSpeed;
-        animSpeed = Mathf.Clamp(attractMass * lol * 0.15f, -4, 4);
+        
+        animSpeed = Mathf.Clamp(attractMass* 0.15f, 0.5f, 3)*lol;
         changeEnergy(-attractorMass);
-
-        if(animSpeed < 0.5f && animSpeed >= 0)
-        {
-            animSpeed = 0.5f;
-        }
-        else if (animSpeed > -0.5f && animSpeed < 0)
-        {
-            animSpeed = -0.5f;
-        }
         cursorAnim.SetFloat("strength", animSpeed);
         
         
