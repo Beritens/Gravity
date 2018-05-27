@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class controls : MonoBehaviour {
 
@@ -51,7 +52,7 @@ public class controls : MonoBehaviour {
     public float energy;
     public bar energyBar;
     string number;
-    Text numberText;
+    TextMeshProUGUI numberText;
 
     
     public bar attractorMassBar;
@@ -68,7 +69,7 @@ public class controls : MonoBehaviour {
         energyBar.changeValue(energy , MaxEnergy);
         attractorMassBar.changeValue(attractorMass , MaxAttractorMass);
         healthBar.changeValue(health , MaxHealth);
-        numberText = GameObject.Find("attractorMass").GetComponent<Text>();
+        numberText = GameObject.Find("attractorMass").GetComponent<TextMeshProUGUI>();
     }
 	
 	// Update is called once per frame
@@ -127,16 +128,17 @@ public class controls : MonoBehaviour {
         if (collision.gameObject.tag == "collectable")
         {
             collectable col = collision.gameObject.GetComponent<collectable>();
-            if(col.Energy != 0)
-            {
-                changeEnergy(col.Energy);
-
-            }
+           
             if (col.MaxEnergy != 0)
             {
                 changeMaxEnergy(col.MaxEnergy);
             }
-            if(col.MaxAttractorMass != 0)
+            if (col.Energy != 0)
+            {
+                changeEnergy(col.Energy);
+
+            }
+            if (col.MaxAttractorMass != 0)
             {
                 changeMaxAttractorMass(col.MaxAttractorMass);
             }

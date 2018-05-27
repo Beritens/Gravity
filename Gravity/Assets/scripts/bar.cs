@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class bar : MonoBehaviour {
 
     public Image theBar;
-    public Text text;
+    public TextMeshProUGUI text;
     public bool onlyValue = false;
     public static bool numbersOn = true;
 	
