@@ -51,7 +51,7 @@ public class controls : MonoBehaviour {
     public float MaxEnergy;
     public float energy;
     public bar energyBar;
-    string number;
+    string number = "";
     TextMeshProUGUI numberText;
 
     
@@ -308,7 +308,14 @@ public class controls : MonoBehaviour {
         animSpeed = Mathf.Clamp(attractMass* 0.15f, 0.5f, 3)*lol;
         changeEnergy(-attractorMass);
         cursorAnim.SetFloat("strength", animSpeed);
-        
+        if(attractMass == 0)
+        {
+            cursorAnim.gameObject.SetActive(false);
+        }
+        else
+        {
+            cursorAnim.gameObject.SetActive(true);
+        }
         
         
     }
@@ -392,6 +399,8 @@ public class controls : MonoBehaviour {
     {
         if (Input.anyKeyDown)
         {
+            
+            
             if (Input.GetKeyDown("."))
             {
                 if (!number.Contains("."))
@@ -400,8 +409,9 @@ public class controls : MonoBehaviour {
                     numberText.text = number;
                 }
             }
-            else if (Input.GetKeyDown("delete"))
+            else if (Input.GetKeyDown(KeyCode.Backspace) && number.Length >0)
             {
+                print("hi");
                 number = number.Remove(number.Length - 1);
 
                 numberText.text = number;
