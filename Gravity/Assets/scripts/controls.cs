@@ -27,7 +27,8 @@ public class controls : MonoBehaviour {
     public float friction;
     public float shortJump;
     Rigidbody2D rb;
-    public bool jumping = false;
+    bool jumping = false;
+    bool probablyJumping = false;
     public Animator anim;
     public float MaxHealth;
     public float health;
@@ -80,10 +81,14 @@ public class controls : MonoBehaviour {
         {
             jumping = false;
         }
+        if(previouslyGrounded && !grounded && probablyJumping){
+            jumping = true;
+            probablyJumping = false;
+        }
         anim.SetBool("grounded", grounded);
         if (Input.GetButtonDown("Jump") && grounded && !jumping)
         {
-            jumping = true;
+            probablyJumping = true;
             rb.AddForce(new Vector2(0, jumpForce),ForceMode2D.Impulse);
         }
         

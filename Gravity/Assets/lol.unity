@@ -3054,7 +3054,12 @@ Prefab:
     - target: {fileID: 50899779228911412, guid: 6b8bb583638d1b448ac15c95d631c339,
         type: 2}
       propertyPath: m_Interpolate
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174760223582444, guid: 6b8bb583638d1b448ac15c95d631c339,
+        type: 2}
+      propertyPath: groundCircleRadius
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b8bb583638d1b448ac15c95d631c339, type: 2}
@@ -6409,7 +6414,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
