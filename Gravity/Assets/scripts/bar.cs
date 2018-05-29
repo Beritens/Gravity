@@ -10,9 +10,17 @@ public class bar : MonoBehaviour {
     public TextMeshProUGUI text;
     public bool onlyValue = false;
     public static bool numbersOn = true;
+    public bool spriteStuff = false;
+    public Sprite[] sprites;
+    
 	
 	public void changeValue (float Value, float MaxValue) {
-        theBar.fillAmount = Value/MaxValue;
+        if(!spriteStuff){
+           theBar.fillAmount = Value/MaxValue; 
+        }
+        else{
+            theBar.sprite = sprites[spriteThing(Value/MaxValue,sprites.Length)];
+        }
         if (numbersOn)
         {
             if (onlyValue)
@@ -25,5 +33,13 @@ public class bar : MonoBehaviour {
             }
         }
 
+    }
+    int spriteThing(float value, int quantity){
+        for(int i = 0; i<quantity; i++){
+            if(value <= (float)(i +1)/ (float)quantity){
+                return i;
+            }
+        }
+        return 0;
     }
 }

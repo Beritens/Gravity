@@ -86,12 +86,9 @@ public class controls : MonoBehaviour {
             jumping = true;
             rb.AddForce(new Vector2(0, jumpForce),ForceMode2D.Impulse);
         }
-        MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        ArmStuff();
-        if(cursorAnim != null)
-        {
-            cursorAnim.transform.position = MousePos;
-        }
+        
+        
+        
         if(Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             attractorMass = Mathf.Clamp(attractorMass + Input.GetAxis("Mouse ScrollWheel")*MaxAttractorMass, 0, MaxAttractorMass);
@@ -99,6 +96,15 @@ public class controls : MonoBehaviour {
         }
         NumberStuff();
         
+    }
+    void LateUpdate()
+    {
+        MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        if(cursorAnim != null)
+        {
+            cursorAnim.transform.position = MousePos;
+        }
+        ArmStuff();
     }
     void FixedUpdate()
     {
@@ -258,6 +264,7 @@ public class controls : MonoBehaviour {
     #region gravity
     void attract(int lol)
     {
+        MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         float attractMass = attractorMass;
         if(attractMass > energy)
         {
@@ -306,8 +313,10 @@ public class controls : MonoBehaviour {
         float animSpeed;
         
         animSpeed = Mathf.Clamp(attractMass* 0.15f, 0.5f, 3)*lol;
-        changeEnergy(-attractorMass);
+        changeEnergy(-attractMass);
         cursorAnim.SetFloat("strength", animSpeed);
+        cursorAnim.GetComponent<WindZone>().windMain = lol*20;
+        cursorAnim.GetComponent<WindZone>().radius = attractMass *1.5f;
         if(attractMass == 0)
         {
             cursorAnim.gameObject.SetActive(false);

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4247176994311558}
   - component: {fileID: 212625513890188702}
   - component: {fileID: 95097442618695100}
+  - component: {fileID: 182469827271118420}
   m_Layer: 0
   m_Name: cursorThing
   m_TagString: Untagged
@@ -88,6 +89,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!108 &108291883685581720
 Light:
   m_ObjectHideFlags: 1
@@ -124,6 +126,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!182 &182469827271118420
+WindZone:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1353647151771254}
+  m_Enabled: 1
+  m_Mode: 1
+  m_Radius: 20
+  m_WindMain: 20
+  m_WindTurbulence: 0
+  m_WindPulseMagnitude: 0
+  m_WindPulseFrequency: 0
 --- !u!212 &212625513890188702
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -137,6 +152,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

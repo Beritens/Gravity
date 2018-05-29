@@ -31,14 +31,12 @@ public class follow : MonoBehaviour {
         
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         
         
         
-        Vector3 desiredPos = target.position + offset;
-        Vector3 smoothedPos = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
-        transform.position = smoothedPos;
+        transform.position = target.position+offset;
         for (int i = 0; i < bg.Length; i++)
         {
             bg[i].material.SetVector("_Offset", new Vector4((transform.position.x+bgOffset[i].x) / SpriteStuff[i].x * parralax[i], (transform.position.y + bgOffset[i].y) / SpriteStuff[i].y * parralax[i], 0, 0));
