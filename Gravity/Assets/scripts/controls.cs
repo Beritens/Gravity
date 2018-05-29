@@ -34,6 +34,10 @@ public class controls : MonoBehaviour {
     public float health;
     public bar healthBar;
     
+    
+    
+    
+    
     [Space(10)]
     [Header("gravity stuff")]
     public List<attracted> attractedObj;

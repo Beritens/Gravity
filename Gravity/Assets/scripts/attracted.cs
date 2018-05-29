@@ -6,4 +6,5 @@ using UnityEngine;
 public class attracted : MonoBehaviour {
 
     public float MinDistance = 0.5f;
+    
 }

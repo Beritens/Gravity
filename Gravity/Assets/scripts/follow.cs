@@ -13,6 +13,7 @@ public class follow : MonoBehaviour {
     public float[] parralax;
     public Vector2[] bgOffset;
     public Color[] tint;
+    
    /* public float minZoom = 60f;
     public float maxZoom = 10f;
     Bounds bounds;

@@ -13,6 +13,7 @@ public class bar : MonoBehaviour {
     public bool spriteStuff = false;
     public Sprite[] sprites;
     
+    
 	
 	public void changeValue (float Value, float MaxValue) {
         if(!spriteStuff){

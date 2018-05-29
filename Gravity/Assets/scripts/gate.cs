@@ -8,6 +8,7 @@ public class gate : MonoBehaviour {
     public float time = 1;
     Vector2 StartPos;
     float t = 0;
+    
     private void Start()
     {
         StartPos = transform.localPosition;
