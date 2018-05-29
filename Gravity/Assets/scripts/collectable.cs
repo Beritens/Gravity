@@ -21,10 +21,6 @@ public class collectable : MonoBehaviour{
         yield return new WaitForSeconds(1);
         Destroy(bob);
         Destroy(this.gameObject);
-        if (GetComponent<attracted>())
-        {
-            GameObject.FindObjectOfType<controls>().attractedObj.Remove(GetComponent<attracted>());
-        }
     }
 
 }

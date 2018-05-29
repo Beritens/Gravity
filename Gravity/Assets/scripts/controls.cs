@@ -25,9 +25,10 @@ public class controls : MonoBehaviour {
     public float speedAir;
     public float jumpForce;
     public float friction;
+    public float frictionAir;
     public float shortJump;
     Rigidbody2D rb;
-    bool jumping = false;
+    public bool jumping = false;
     bool probablyJumping = false;
     public Animator anim;
     public float MaxHealth;
@@ -40,12 +41,13 @@ public class controls : MonoBehaviour {
     
     [Space(10)]
     [Header("gravity stuff")]
-    public List<attracted> attractedObj;
-    const float G = 1f;
+    //public List<attracted> attractedObj;
+    //const float G = 1f;
     public float attractorMass = 10f;
     public float MaxAttractorMass;
     public float RWMEO = 2f;
-    public float MinDistance;
+    //public float MinDistance;
+    public attract attractStuff;
     public float jumpBreakDistance;
     public Transform arm;
     public Sprite[] arms;
@@ -242,6 +244,15 @@ public class controls : MonoBehaviour {
                 rb.velocity = new Vector2((rb.velocity.x-movingPlatform.velocity.x) * friction+movingPlatform.velocity.x, rb.velocity.y);
             }
         }
+        else
+        {
+            if (movingPlatform == null)
+                rb.velocity = new Vector2(rb.velocity.x * frictionAir, rb.velocity.y);
+            else
+            {
+                rb.velocity = new Vector2((rb.velocity.x - movingPlatform.velocity.x) * frictionAir + movingPlatform.velocity.x, rb.velocity.y);
+            }
+        }
             
     }
     bool WillHitWall(float input)
@@ -279,7 +290,8 @@ public class controls : MonoBehaviour {
         {
             attractMass = energy;
         }
-        Collider2D[] inRadius = Physics2D.OverlapCircleAll(MousePos, RWMEO * attractorMass);
+        attractStuff.attractStuff(attractMass * lol, MousePos, RWMEO);
+        /*Collider2D[] inRadius = Physics2D.OverlapCircleAll(MousePos, RWMEO * attractMass);
         for (int i = 0; i < inRadius.Length; i++)
         {
             if (!inRadius[i].GetComponent<attracted>())
@@ -289,7 +301,7 @@ public class controls : MonoBehaviour {
             {
                 continue;
             }
-
+            y
             Rigidbody2D rba = inRadius[i].GetComponent<Rigidbody2D>();
             //Vector2 pos = col.bounds.ClosestPoint(MousePos);
             Vector2 pos = ClosestPoint(col, MousePos);
@@ -307,12 +319,12 @@ public class controls : MonoBehaviour {
             }
 
 
-
+            attractMass *= lol;
             float forceMagnitude = G * (attractMass * rba.mass) / Mathf.Pow(Gravdistance, 2);
-            Vector2 force = direction.normalized * forceMagnitude * lol;
+            Vector2 force = direction.normalized * forceMagnitude;
             
             rba.AddForceAtPosition(force, pos);
-        }
+        }*/
         if (!mouseDown)
         {
             GameObject bob = GameObject.Instantiate(cursorThing, MousePos, Quaternion.identity);
@@ -324,7 +336,7 @@ public class controls : MonoBehaviour {
         animSpeed = Mathf.Clamp(attractMass* 0.15f, 0.5f, 3)*lol;
         changeEnergy(-attractMass);
         cursorAnim.SetFloat("strength", animSpeed);
-        cursorAnim.GetComponent<WindZone>().windMain = lol*20;
+        cursorAnim.GetComponent<WindZone>().windMain = attractMass*lol*0.05f + 19*lol;
         cursorAnim.GetComponent<WindZone>().radius = attractMass *1.5f;
         if(attractMass == 0)
         {
