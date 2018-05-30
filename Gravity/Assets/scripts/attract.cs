@@ -25,22 +25,39 @@ public class attract : MonoBehaviour {
             if (!inRadius[i].GetComponent<attracted>())
                 continue;
             Collider2D col = inRadius[i].GetComponent<Collider2D>();
+            bool inside = false;
             if (col.OverlapPoint(posi))
             {
-                continue;
+                inside = true;
             }
 
             Rigidbody2D rba = inRadius[i].GetComponent<Rigidbody2D>();
             //Vector2 pos = col.bounds.ClosestPoint(MousePos);
-            Vector2 pos = ClosestPoint(col, posi);
+            Vector2 pos;
+            if (inside)
+            {
+                pos = inRadius[i].transform.position;
+            }
+            else
+            {
+                pos = ClosestPoint(col, posi);
+            }
+            
             Vector2 direction = posi - pos;
+            
             float Gravdistance = direction.magnitude;
+            
             if (Gravdistance == 0)
             {
                 continue;
             }
             float minDis = inRadius[i].GetComponent<attracted>().MinDistance;
-            Gravdistance += minDis;
+            if (inside)
+            {
+                Gravdistance = minDis;
+            }
+            else
+                Gravdistance += minDis;
             if (rba.GetComponent<controls>() != null && Gravdistance < rba.GetComponent<controls>().jumpBreakDistance)
             {
                 rba.GetComponent<controls>().jumping = false;

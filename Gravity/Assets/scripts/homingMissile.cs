@@ -9,10 +9,12 @@ public class homingMissile : MonoBehaviour {
     public float speed = 10f;
     public float rotateSpeed = 0.1f;
     public float MaxVelocity = 10f;
+    public Vector2 centerOfMass;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.centerOfMass = centerOfMass;
     }
 
     // Update is called once per frame

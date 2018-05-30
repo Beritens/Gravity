@@ -54,7 +54,7 @@ public class controls : MonoBehaviour {
     public SpriteRenderer army;
     bool mouseDown = false;
     public GameObject cursorThing;
-    Animator cursorAnim;
+    GameObject cursor;
     public float MaxEnergy;
     public float energy;
     public bar energyBar;
@@ -111,9 +111,9 @@ public class controls : MonoBehaviour {
     void LateUpdate()
     {
         MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        if(cursorAnim != null)
+        if(cursor != null)
         {
-            cursorAnim.transform.position = MousePos;
+            cursor.transform.position = MousePos;
         }
         ArmStuff();
     }
@@ -133,9 +133,9 @@ public class controls : MonoBehaviour {
         {
             attract(-1);
         }
-        else if(cursorAnim != null)
+        else if(cursor != null)
         {
-            Destroy(cursorAnim.gameObject);
+            Destroy(cursor);
             mouseDown = false;
         }
     }
@@ -327,24 +327,23 @@ public class controls : MonoBehaviour {
         }*/
         if (!mouseDown)
         {
-            GameObject bob = GameObject.Instantiate(cursorThing, MousePos, Quaternion.identity);
-            cursorAnim = bob.GetComponent<Animator>();
+            cursor = GameObject.Instantiate(cursorThing, MousePos, Quaternion.identity);
             mouseDown = true;
         }
         float animSpeed;
         
         animSpeed = Mathf.Clamp(attractMass* 0.15f, 0.5f, 3)*lol;
         changeEnergy(-attractMass);
-        cursorAnim.SetFloat("strength", animSpeed);
-        cursorAnim.GetComponent<WindZone>().windMain = attractMass*lol*0.05f + 19*lol;
-        cursorAnim.GetComponent<WindZone>().radius = attractMass *1.5f;
+        cursor.GetComponent<Animator>().SetFloat("strength", animSpeed);
+        cursor.GetComponent<WindZone>().windMain = attractMass*lol*0.05f + 19*lol;
+        cursor.GetComponent<WindZone>().radius = attractMass *1.5f;
         if(attractMass == 0)
         {
-            cursorAnim.gameObject.SetActive(false);
+            cursor.SetActive(false);
         }
         else
         {
-            cursorAnim.gameObject.SetActive(true);
+            cursor.SetActive(true);
         }
         
         

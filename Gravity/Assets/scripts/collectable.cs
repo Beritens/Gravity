@@ -14,6 +14,14 @@ public class collectable : MonoBehaviour{
         GetComponent<Collider2D>().enabled = false;
         bob = GameObject.Instantiate(particles, transform.position, Quaternion.Euler(0, 0, 0));
         bob.GetComponent< ParticleSystemRenderer>().material.mainTexture = GetComponent<SpriteRenderer>().sprite.texture;
+        if (GetComponent<WindZone>())
+        {
+            GetComponent<WindZone>().windMain = 0;
+        }
+        if (GetComponent<attract>())
+        {
+            GetComponent<attract>().enabled = false;
+        }
         StartCoroutine(wait());
     }
     IEnumerator wait()
