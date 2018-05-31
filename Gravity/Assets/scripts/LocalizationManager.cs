@@ -8,6 +8,7 @@ public class LocalizationManager : MonoBehaviour {
     public static LocalizationManager instance;
     Dictionary<string, ConText[]> Lconversations;
     bool ready = false;
+    public string defaultFileName;
 
 	void Start () {
 		if(instance == null)
@@ -19,6 +20,7 @@ public class LocalizationManager : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        LoadLocalizedText(defaultFileName);
 	}
 	
 	public void LoadLocalizedText(string fileName) {

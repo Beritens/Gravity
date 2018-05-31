@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour {
 
-    public UnityEvent method;
+    public UnityEvent methodEnter;
+    public UnityEvent methodExit;
     public LayerMask layer;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if( layer == (layer | (1 << collision.gameObject.layer)))
+        if(methodEnter != null && layer == (layer | (1 << collision.gameObject.layer)))
         {
-            method.Invoke();
+            methodEnter.Invoke();
         }
             
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (methodExit != null && layer == (layer | (1 << collision.gameObject.layer)))
+        {
+            methodExit.Invoke();
+        }
+
     }
 }
