@@ -1,0 +1,7 @@
+{"conversations":[
+    {"key":"con1","name": "Bob","text":[
+        {"name":"bob","theText":"hello"},
+        {"name":"boby","theText":"hello"},
+        {"name":"bob","theText":"how are you?"}
+    ]}
+]}
