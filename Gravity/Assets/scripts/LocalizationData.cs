@@ -15,7 +15,13 @@ public class LocalizationConversations
 public class ConText
 {
     public string name;
+    public string spriteKey;
     [TextArea(3,10)]
     public string theText;
+    public bool skipable;
+    public bool end;
+    public bool doSomething;
+    public int method;
+    public string[] parameters;
 
 }

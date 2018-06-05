@@ -61,7 +61,7 @@ public class controls : MonoBehaviour {
     string number = "";
     TextMeshProUGUI numberText;
 
-    
+    Animator animCursor;
     public bar attractorMassBar;
 
     Vector2 MousePos;
@@ -328,13 +328,15 @@ public class controls : MonoBehaviour {
         if (!mouseDown)
         {
             cursor = GameObject.Instantiate(cursorThing, MousePos, Quaternion.identity);
+            animCursor = cursor.GetComponent<Animator>();
+            animCursor.SetFloat("random offset", Random.Range(0f, 1f));
             mouseDown = true;
         }
         float animSpeed;
         
         animSpeed = Mathf.Clamp(attractMass* 0.15f, 0.5f, 3)*lol;
         changeEnergy(-attractMass);
-        cursor.GetComponent<Animator>().SetFloat("strength", animSpeed);
+        animCursor.SetFloat("strength", animSpeed);
         cursor.GetComponent<WindZone>().windMain = attractMass*lol*0.05f + 19*lol;
         cursor.GetComponent<WindZone>().radius = attractMass *1.5f;
         if(attractMass == 0)

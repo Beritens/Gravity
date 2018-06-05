@@ -58,9 +58,10 @@ public class attract : MonoBehaviour {
             }
             else
                 Gravdistance += minDis;
-            if (rba.GetComponent<controls>() != null && Gravdistance < rba.GetComponent<controls>().jumpBreakDistance)
+            controls cont = rba.GetComponent<controls>();
+            if (cont != null && Gravdistance < cont.jumpBreakDistance)
             {
-                rba.GetComponent<controls>().jumping = false;
+                cont.jumping = false;
             }
 
 

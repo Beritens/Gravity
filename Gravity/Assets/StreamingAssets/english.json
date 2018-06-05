@@ -1,5 +1,1 @@
-{"conversations":[{"key":"con1","text":[
-    {"name":"bob","theText":"hello"},
-    {"name":"boby","theText":"hello"},
-    {"name":"bob","theText":"how are you?"},
-    {"name":"boby","theText":"I'm fine"}]}]}
+{"conversations":[{"key":"con1","text":[{"name":"bob","spriteKey":"lol","theText":"hello","skipable":true,"end":false,"doSomething":false,"method":0,"parameters":[]},{"name":"boby","spriteKey":"lol","theText":"hello","skipable":true,"end":false,"doSomething":false,"method":0,"parameters":[]},{"name":"bob","spriteKey":"lol","theText":"how are you?","skipable":true,"end":false,"doSomething":false,"method":0,"parameters":[]},{"name":"boby","spriteKey":"lol","theText":"I'm fine","skipable":true,"end":false,"doSomething":false,"method":0,"parameters":[]},{"name":"bob","spriteKey":"lol","theText":"and how are <color=\"red\">YOU</color>?","skipable":true,"end":true,"doSomething":true,"method":0,"parameters":["I'm fine","1","I hate my life","2"]}]}]}

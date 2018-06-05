@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class _UnityEventStringArr : UnityEvent<string[]> { }
 
 public class triggerConversation : MonoBehaviour {
 
@@ -20,7 +24,7 @@ public class triggerConversation : MonoBehaviour {
                 }
             }
         }
-        conversationManager.instance.displayText(messageInfo[MII].key, messageInfo[MII].index, messageInfo[MII].minIndex, messageInfo[MII].maxIndex);
+        conversationManager.instance.displayText(messageInfo[MII].key, messageInfo[MII].index, messageInfo[MII].minIndex, messageInfo[MII].maxIndex, messageInfo[MII].method);
 	}
 }
 
@@ -29,9 +33,11 @@ public class messageInfo
 {
     public string key;
     public int index;
+    [Tooltip("-1 bei conversations start")]
     public int minIndex = 0;
     public int maxIndex = 0;
     public int PPPlus = 0;
     public int PPvalue = 0;
+    public _UnityEventStringArr[] method;
 
 }
