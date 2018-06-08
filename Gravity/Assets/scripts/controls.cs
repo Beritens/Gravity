@@ -70,9 +70,12 @@ public class controls : MonoBehaviour {
     void Start () {
         cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
-        energyBar = GameObject.Find("energyBar").GetComponent<bar>();
-        attractorMassBar = GameObject.Find("energyUsageBar").GetComponent<bar>();
-        healthBar = GameObject.Find("healthBar").GetComponent<bar>();
+        if(energyBar == null)
+            energyBar = GameObject.Find("energyBar").GetComponent<bar>();
+        if (attractorMassBar == null)
+            attractorMassBar = GameObject.Find("energyUsageBar").GetComponent<bar>();
+        if (healthBar == null)
+            healthBar = GameObject.Find("healthBar").GetComponent<bar>();
         energyBar.changeValue(energy , MaxEnergy);
         attractorMassBar.changeValue(attractorMass , MaxAttractorMass);
         healthBar.changeValue(health , MaxHealth);

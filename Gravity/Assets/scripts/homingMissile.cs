@@ -13,6 +13,10 @@ public class homingMissile : MonoBehaviour {
 
     private void Start()
     {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         rb = GetComponent<Rigidbody2D>();
         rb.centerOfMass = centerOfMass;
     }

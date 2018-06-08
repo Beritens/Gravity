@@ -8,11 +8,20 @@ public class follow : MonoBehaviour {
     public Vector3 offset;
     public float smoothSpeed;
     Camera cam;
-    public SpriteRenderer[] bg;
+    //public SpriteRenderer[] bg;
+    [System.Serializable]
+    public struct bgstruct
+    {
+        public SpriteRenderer bg;
+        public float parralax;
+        public Vector2 bgOffset;
+        public Color color;
+    }
     List<Vector2> SpriteStuff = new List<Vector2>();
-    public float[] parralax;
+    public bgstruct[] bgs;
+    /*public float[] parralax;
     public Vector2[] bgOffset;
-    public Color[] tint;
+    public Color[] tint;*/
     
    /* public float minZoom = 60f;
     public float maxZoom = 10f;
@@ -23,11 +32,15 @@ public class follow : MonoBehaviour {
     Bounds boundy;*/
     private void Start()
     {
-        cam = GetComponent<Camera>();
-        for(int i = 0; i < bg.Length; i++)
+        if (target == null)
         {
-            SpriteStuff.Add(new Vector2(bg[i].sprite.rect.width / bg[i].sprite.pixelsPerUnit, bg[i].sprite.rect.height / bg[i].sprite.pixelsPerUnit));
-            bg[i].material.color = tint[i];
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        cam = GetComponent<Camera>();
+        for(int i = 0; i < bgs.Length; i++)
+        {
+            SpriteStuff.Add(new Vector2(bgs[i].bg.sprite.rect.width / bgs[i].bg.sprite.pixelsPerUnit, bgs[i].bg.sprite.rect.height / bgs[i].bg.sprite.pixelsPerUnit));
+            bgs[i].bg.material.color = bgs[i].color;
         }
         
     }
@@ -38,9 +51,9 @@ public class follow : MonoBehaviour {
         
         
         transform.position = target.position+offset;
-        for (int i = 0; i < bg.Length; i++)
+        for (int i = 0; i < bgs.Length; i++)
         {
-            bg[i].material.SetVector("_Offset", new Vector4((transform.position.x+bgOffset[i].x) / SpriteStuff[i].x * parralax[i], (transform.position.y + bgOffset[i].y) / SpriteStuff[i].y * parralax[i], 0, 0));
+            bgs[i].bg.material.SetVector("_Offset", new Vector4((transform.position.x+ bgs[i].bgOffset.x) / SpriteStuff[i].x * bgs[i].parralax, (transform.position.y + bgs[i].bgOffset.y) / SpriteStuff[i].y * bgs[i].parralax, 0, 0));
         }
             
         

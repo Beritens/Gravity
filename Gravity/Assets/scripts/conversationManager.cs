@@ -10,14 +10,16 @@ public class conversationManager : MonoBehaviour {
     int currentIndex = -1;
     string currentKey = "";
     bool inConversation = false;
+    bool typing = false;
     _UnityEventStringArr[] currentMethods;
-    bool isskipable;
+    ConText currentMessage;
 
     public Animator conPanelAnim;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI text;
     public Image image;
     public float textSpeed;
+    
     [System.Serializable]
     public struct NamedImage
     {
@@ -48,37 +50,33 @@ public class conversationManager : MonoBehaviour {
         conPanelAnim.SetBool("isOpen", true);
         currentIndex = index;
         currentKey = key;
-        currentMethods = methods;
+        if(methods != null)
+            currentMethods = methods;
         ConText[] conver = LocalizationManager.instance.GetConText(key);
-        ConText message;
         if(conver != null && conver.Length >= index)
-            message = conver[index];
+            currentMessage = conver[index];
         
         else
         {
-            message = new ConText();
-            message.doSomething = false;
-            message.end = true;
-            message.name = "<color=\"red\" > error";
-            message.parameters = new string[0];
-            message.skipable = true;
-            message.spriteKey = "error";
-            message.theText = "<color=\"red\" > error";
+            currentMessage = new ConText();
+            currentMessage.doSomething = false;
+            currentMessage.end = true;
+            currentMessage.name = "<color=\"red\" > error";
+            currentMessage.parameters = new string[0];
+            currentMessage.skipable = true;
+            currentMessage.spriteKey = "error";
+            currentMessage.theText = "<color=\"red\" > error";
         }
-        isskipable = message.skipable;
         //print(message.name + " says: " + message.theText);
-        image.sprite = sprites[message.spriteKey];
-        nameText.text = message.name;
+        image.sprite = sprites[currentMessage.spriteKey];
+        nameText.text = currentMessage.name;
         text.text = "";
         if(coroutine != null)
             StopCoroutine(coroutine);
-        coroutine = typetext(message.theText, text, textSpeed);
+        coroutine = typetext(currentMessage.theText, text, textSpeed);
         StartCoroutine(coroutine);
-        if (message.doSomething)
-        {
-            methods[message.method].Invoke(message.parameters);
-        }
-        if (message.end == true)
+        
+        if (currentMessage.end == true)
         {
             inConversation = false;
             
@@ -93,24 +91,30 @@ public class conversationManager : MonoBehaviour {
             print("option " + i/2 + ": " + options[i] + "     method: " + options[i+1]);
         }
     }
-    public void skip(int howMuch)
+    public void skip(int howMuch, bool needsToBeSkipable)
     {
-        if (inConversation && isskipable)
-            displayText(currentKey, currentIndex + howMuch, 0, currentIndex + howMuch + 1, currentMethods);
-        else
+        if (inConversation && (currentMessage.skipable || !needsToBeSkipable))
+            displayText(currentKey, currentIndex + howMuch, 0, currentIndex + howMuch + 1, null);
+        else if(!inConversation)
         {
             conPanelAnim.SetBool("isOpen", false);
         }
     }
     private void Update()
     {
-        if (Input.GetKeyUp("e"))
+        if (Input.GetButtonDown("use"))
         {
-            skip(1);
+            if (typing)
+            {
+                completeType();
+            }
+            else
+                skip(1,true);
         }
     }
     IEnumerator typetext(string text, TextMeshProUGUI textField, float speed)
     {
+        typing = true;
         bool ok = true;
         foreach(char letter in text)
         {
@@ -119,12 +123,41 @@ public class conversationManager : MonoBehaviour {
             {
                 ok = false;
             }
-            if(letter == '>')
+            
+            if (ok)
+                yield return new WaitForSeconds(speed);
+            if (letter == '>')
             {
                 ok = true;
             }
-            if (ok)
-                yield return new WaitForSeconds(speed);
+        }
+        if (currentMessage.doSomething)
+        {
+            print(currentMethods.Length);
+            currentMethods[currentMessage.method].Invoke(currentMessage.parameters);
+        }
+        typing = false;
+    }
+    void completeType()
+    {
+        StopCoroutine(coroutine);
+        text.text = currentMessage.theText;
+        if (currentMessage.doSomething)
+        {
+            currentMethods[currentMessage.method].Invoke(currentMessage.parameters);
+        }
+        typing = false;
+    }
+    //UnityEvents can only use one argument
+    public void skipForTrigger(int howMuch)
+    {
+        skip(howMuch, false);
+    }
+    public void skipAdvanced(string key, int howMuch, int MinIndex, int MaxIndex)
+    {
+        if (inConversation)
+        {
+            displayText(key, currentIndex + howMuch, MinIndex, MaxIndex, null);
         }
     }
 }
