@@ -19,6 +19,7 @@ public class conversationManager : MonoBehaviour {
     public TextMeshProUGUI text;
     public Image image;
     public float textSpeed;
+    public GameObject skipThing;
     
     [System.Serializable]
     public struct NamedImage
@@ -97,6 +98,7 @@ public class conversationManager : MonoBehaviour {
             displayText(currentKey, currentIndex + howMuch, 0, currentIndex + howMuch + 1, null);
         else if(!inConversation)
         {
+            skipThing.SetActive(false);
             conPanelAnim.SetBool("isOpen", false);
         }
     }
@@ -114,6 +116,7 @@ public class conversationManager : MonoBehaviour {
     }
     IEnumerator typetext(string text, TextMeshProUGUI textField, float speed)
     {
+        skipThing.SetActive(false);
         typing = true;
         bool ok = true;
         foreach(char letter in text)
@@ -133,31 +136,43 @@ public class conversationManager : MonoBehaviour {
         }
         if (currentMessage.doSomething)
         {
-            print(currentMethods.Length);
             currentMethods[currentMessage.method].Invoke(currentMessage.parameters);
         }
         typing = false;
+        if (currentMessage.skipable)
+        {
+            skipThing.SetActive(true);
+        }
     }
     void completeType()
     {
         StopCoroutine(coroutine);
         text.text = currentMessage.theText;
+        if (currentMessage.skipable)
+        {
+            skipThing.SetActive(true);
+        }
         if (currentMessage.doSomething)
         {
             currentMethods[currentMessage.method].Invoke(currentMessage.parameters);
         }
         typing = false;
     }
-    //UnityEvents can only use one argument
-    public void skipForTrigger(int howMuch)
-    {
-        skip(howMuch, false);
-    }
+    
     public void skipAdvanced(string key, int howMuch, int MinIndex, int MaxIndex)
     {
         if (inConversation)
         {
             displayText(key, currentIndex + howMuch, MinIndex, MaxIndex, null);
         }
+    }
+    //UnityEvents can only use one argument :/
+    public void skipForTrigger(int howMuch)
+    {
+        skip(howMuch, false);
+    }
+    public void skipOne(bool needsToBeSkipable)
+    {
+        skip(1, needsToBeSkipable);
     }
 }

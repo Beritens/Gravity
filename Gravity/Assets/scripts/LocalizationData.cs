@@ -14,11 +14,11 @@ public class LocalizationConversations
 [System.Serializable]
 public class ConText
 {
+    public bool skipable;
     public string name;
     public string spriteKey;
     [TextArea(3,10)]
     public string theText;
-    public bool skipable;
     public bool end;
     public bool doSomething;
     public int method;

@@ -13,13 +13,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: random offset
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -39,7 +39,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: cursorThing2
+  m_Name: cursorThing
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -50,14 +50,14 @@ AnimatorState:
   m_Mirror: 0
   m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 1
+  m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: ae8bd7d56666e7448bb9bcc1c0257dc8, type: 2}
   m_Tag: 
   m_SpeedParameter: strength
   m_MirrorParameter: 
   m_CycleOffsetParameter: random offset
-  m_TimeParameter: 
+  m_TimeParameter: strength
 --- !u!1107 &1107894026806152220
 AnimatorStateMachine:
   serializedVersion: 5

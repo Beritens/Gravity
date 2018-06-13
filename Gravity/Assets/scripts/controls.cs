@@ -332,7 +332,8 @@ public class controls : MonoBehaviour {
         {
             cursor = GameObject.Instantiate(cursorThing, MousePos, Quaternion.identity);
             animCursor = cursor.GetComponent<Animator>();
-            animCursor.SetFloat("random offset", Random.Range(0f, 1f));
+            //animCursor.SetFloat("random offset", Random.Range(0f, 1f));
+            animCursor.Play("cursorThing", 0, Random.Range(0f, 1f));
             mouseDown = true;
         }
         float animSpeed;
