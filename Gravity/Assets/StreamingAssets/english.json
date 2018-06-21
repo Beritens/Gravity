@@ -1,1 +1,169 @@
-{"conversations":[{"key":"con1","text":[{"skipable":true,"name":"bob","spriteKey":"lol","theText":"hello","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":false,"name":"boby","spriteKey":"lol","theText":"hello","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":true,"name":"bob","spriteKey":"lol","theText":"how are you?","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":true,"name":"boby","spriteKey":"lol","theText":"I'm fine","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":true,"name":"bob","spriteKey":"lol","theText":"and how are <color=\"red\">YOU</color>?","end":true,"doSomething":true,"method":0,"parameters":["I'm fine","1","I hate my life","2"]}]},{"key":"tutorial","text":[{"skipable":true,"name":"Super Awesome AI","spriteKey":"AI","theText":"welcome to the <color=#C2F0FF>Gravity Manipulation Introduction</color>...","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":true,"name":"Super Awesome AI","spriteKey":"AI","theText":"Let's start: move these boxes into the circle.","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":false,"name":"Super Awesome AI","spriteKey":"AI","theText":"hold the <color=#C2F0FF>left mouse button</color> down in the middle of the circle","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":true,"name":"Super Awesome AI","spriteKey":"AI","theText":"ok! now move them outside of the circle.","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":false,"name":"Super Awesome AI","spriteKey":"AI","theText":"hold the <color=#C2F0FF>right mouse button</color> down.","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":false,"name":"Super Awesome AI","spriteKey":"AI","theText":"Good!","end":false,"doSomething":true,"method":0,"parameters":[]},{"skipable":true,"name":"Super Awesome AI","spriteKey":"AI","theText":"Now score a basket. You might have to turn up the power.","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":false,"name":"Super Awesome AI","spriteKey":"AI","theText":"You can turn up the power with your <color=#C2F0FF>scroll wheel</color>.","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":true,"name":"Super Awesome AI","spriteKey":"AI","theText":"Nice shot. You are almost done. You just have to fly to the other side of the room.","end":false,"doSomething":false,"method":0,"parameters":[]},{"skipable":true,"name":"Super Awesome AI","spriteKey":"AI","theText":"That's all you need to know. Have fun with the device and don't destroy rhe world.","end":true,"doSomething":false,"method":0,"parameters":[]}]}]}
+{
+    "conversations": [
+        {
+            "key": "con1",
+            "text": [
+                {
+                    "skipable": true,
+                    "name": "bob",
+                    "spriteKey": "lol",
+                    "theText": "hello",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": false,
+                    "name": "boby",
+                    "spriteKey": "lol",
+                    "theText": "hello",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": true,
+                    "name": "bob",
+                    "spriteKey": "lol",
+                    "theText": "how are you?",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": true,
+                    "name": "boby",
+                    "spriteKey": "lol",
+                    "theText": "I'm fine",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": true,
+                    "name": "bob",
+                    "spriteKey": "lol",
+                    "theText": "and how are <color=\"red\">YOU</color>?",
+                    "end": true,
+                    "doSomething": true,
+                    "method": 0,
+                    "parameters": [
+                        "I'm fine",
+                        "1",
+                        "I hate my life",
+                        "2"
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "tutorial",
+            "text": [
+                {
+                    "skipable": true,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "Welcome to the <color=#C2F0FF>Gravity Manipulation Introduction</color>...",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": true,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "Let's start: move these boxes into the circle.",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": false,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "hold the <color=#C2F0FF>left mouse button</color> down in the middle of the circle",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": true,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "ok! now move them outside of the circle.",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": false,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "hold the <color=#C2F0FF>right mouse button</color> down.",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": false,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "Good!",
+                    "end": false,
+                    "doSomething": true,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": true,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "Now score a basket. You might have to turn up the power.",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": false,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "You can turn up the power with your <color=#C2F0FF>scroll wheel</color>.",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": false,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "Nice shot. You are almost done. You just have to fly to the other side of the room.",
+                    "end": false,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                },
+                {
+                    "skipable": true,
+                    "name": "Super Awesome AI",
+                    "spriteKey": "AI",
+                    "theText": "That's all you need to know. Have fun with the device and don't destroy the world.",
+                    "end": true,
+                    "doSomething": false,
+                    "method": 0,
+                    "parameters": []
+                }
+            ]
+        }
+    ]
+}

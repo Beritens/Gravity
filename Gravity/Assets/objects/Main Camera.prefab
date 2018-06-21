@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1367083823130670
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4495287782591226
 Transform:
   m_ObjectHideFlags: 1
@@ -154,7 +154,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.3
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -191,19 +191,7 @@ MonoBehaviour:
   target: {fileID: 0}
   offset: {x: 0, y: 0.48, z: -3}
   smoothSpeed: 25
-  bgs:
-  - bg: {fileID: 212748890819489066}
-    parralax: 0.2
-    bgOffset: {x: 0, y: 0}
-    color: {r: 1, g: 1, b: 1, a: 1}
-  - bg: {fileID: 212789327704127278}
-    parralax: 0.15
-    bgOffset: {x: 0, y: 0}
-    color: {r: 1, g: 1, b: 1, a: 1}
-  - bg: {fileID: 212415532100718370}
-    parralax: 0.12
-    bgOffset: {x: 60.7, y: 29.07}
-    color: {r: 0.78195083, g: 0.86036754, b: 0.8679245, a: 1}
+  bgs: []
 --- !u!114 &114659665480739908
 MonoBehaviour:
   m_ObjectHideFlags: 1
